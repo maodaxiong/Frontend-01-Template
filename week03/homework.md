@@ -69,16 +69,18 @@ function convertStringToNumber(string, x) {
 
 * **NumberToString**
 ```
-function convertNumberToString(number, x = 10) {
-  var integer = Math.floor(number);
-  var fraction = null;
-  if (x === 10) fraction = ('' + number).match(/\.\d*/)[0];
-  var string = ''
-  while(integer > 0) {
-    string = integer % x + string;
-    integer = Math.floor(integer / x);
+function convertNumberToString(number, radix = 10) {
+  let integer = Math.floor(number)
+  let fraction = String(number).match(/\.\d+$/)
+  if (fraction) {
+    fraction = fraction[0].replace('.', '')
   }
-  return fraction ? string + fraction : string;
+  let string = ''
+  while (integer > 0) {
+    string = String(integer % radix) + string
+    integer = Math.floor(integer / radix)
+  }
+  return fraction ? `${string}.${fraction}` : string
 }
 ```
 
