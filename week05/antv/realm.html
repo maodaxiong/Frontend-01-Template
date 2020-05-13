@@ -7,8 +7,8 @@
 </head>
 <body>
 <script>
-  var set = new Set();
-  var globalProperties = [
+  let set = new Set();
+  let globalProperties = [
     'eval',
     'isFinite',
     'isNaN',
@@ -58,8 +58,8 @@
     'Reflect',
   ];
 
-  var queue = [];
-  for (var p of globalProperties) {
+  let queue = [];
+  for (let p of globalProperties) {
     queue.push({
       path: [p],
       object: this[p],
@@ -77,7 +77,7 @@
     set.add(current.object);
     // console.log(current.object);
     for (let p of Object.getOwnPropertyNames(current.object)) {
-      var property = Object.getOwnPropertyDescriptor(current.object, p);
+      let property = Object.getOwnPropertyDescriptor(current.object, p);
       if (
           property.hasOwnProperty('value') &&
           ((typeof property.value != null &&
